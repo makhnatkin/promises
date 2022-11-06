@@ -4,3 +4,4 @@ const sayHello = () => {
     alert('Привет!');
 };
 
+alert('Загрузился script.js');
