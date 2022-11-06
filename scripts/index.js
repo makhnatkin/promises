@@ -10,7 +10,15 @@ const loadScript = (src, callback) => {
 
 // загрузит и выполнит скрипт
 loadScript('./scripts/script.js', () => {
+    loadScript('./scripts/script-2.js', () => {
+        loadScript('./scripts/script-3.js', () => {
+            loadScript('./scripts/script-4.js', () => {
+                loadScript('./scripts/script-5.js', () => {
 
-    // работает
-    sayHello();
+                    // работает
+                    sayHello();
+                });
+            });
+        });
+    });
 });
