@@ -1,21 +1,20 @@
 "use strict";
 
-// sayHello();
-function loadScript(src, callback) {
+const loadScript = src => new Promise(function(resolve, reject) {
     let script = document.createElement('script');
     script.src = src;
 
-    script.onload = () => callback(null, script);
-    script.onerror = () => callback(new Error(`Ошибка загрузки скрипта ${src}`));
+    script.onload = () => resolve(script);
+    script.onerror = () => reject(new Error(`Ошибка загрузки скрипта ${src}`));
 
     document.head.append(script);
-}
-// загрузит и выполнит скрипт
-loadScript('./scripts/script.js', (error) => {
-    if (error) {
-        console.error(error);
-    } else {
-        // работает
-        sayHello();
-    }
 });
+
+let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+
+promise.then(
+    script => alert(`${script.src} загружен!`),
+    error => alert(`Ошибка: ${error.message}`)
+);
+
+promise.then(script => alert('Ещё один обработчик...'));
