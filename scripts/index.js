@@ -10,24 +10,12 @@ const loadScript = src => new Promise(function(resolve, reject) {
     document.head.append(script);
 });
 
-let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+loadScript('./scripts/examples.js').then(() => {
+    console.log('Примеры загрузились');
+});
 
-promise
-    .then(
-        script => alert(`${script.src} загружен!`),
-        error => alert(`Ошибка: ${error.message}`)
-    )
-    .then(script => {
-        alert('Ещё один обработчик...');
-        return 'Результат 1'
-    })
-    .then(str => {
-        alert(str);
-        return 'Результат 2'
-    })
-    .then(str => {
-        alert(str);
-        return 'Результат 3'
-    })
-    .catch(error => alert('Ошибка' + error))
-    .finally((str = '') => alert('Все завершено' + str))
+// executor запустился
+// Uncaught (in promise) Error: будущее не наступило
+//     at executor (examples.js:12:16)
+//     at new Promise (<anonymous>)
+//     at examples.js:18:15
