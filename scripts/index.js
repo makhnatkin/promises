@@ -13,6 +13,9 @@ const loadScript = src => new Promise(function(resolve, reject) {
 loadScript('./scripts/examples.js').then(() => {
     console.log('Примеры загрузились');
 });
+loadScript('./scripts/examplesThen.js').then(() => {
+    console.log('Примеры .then загрузились');
+});
 
 // executor запустился
 // Uncaught (in promise) Error: будущее не наступило
